@@ -13,6 +13,7 @@ class _CraftyBayEcommerceState extends State<CraftyBayEcommerce> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: '/',
       theme:AppTheme.lightThemeData ,
       onGenerateRoute:AppRoutes.routes,
