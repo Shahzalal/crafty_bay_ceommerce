@@ -1,4 +1,4 @@
-import 'package:crafty_bay_ecommerce/features/auth/ui/widgets/product_category_item.dart';
+import 'package:crafty_bay_ecommerce/features/common/ui/widgets/product_category_item.dart';
 import 'package:crafty_bay_ecommerce/features/common/ui/controller/main_bottom_nav_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
