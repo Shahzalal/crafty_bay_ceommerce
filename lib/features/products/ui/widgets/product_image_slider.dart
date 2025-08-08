@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:crafty_bay_ecommerce/app/app_colors.dart';
+import 'package:crafty_bay_ecommerce/app/asset_path.dart';
 import 'package:flutter/material.dart';
 
 class ProductImageSlider extends StatefulWidget {
@@ -29,9 +30,9 @@ class _ProductImageSliderState extends State<ProductImageSlider> {
               builder: (BuildContext context) {
                 return Container(
                   width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(color: Colors.grey.shade300),
-                  alignment: Alignment.center,
-                  child: Text('Image $i', style: TextStyle(fontSize: 16.0)),
+                  decoration: BoxDecoration(
+                      image: DecorationImage(image: AssetImage(AssetPath.dummyNikeShoe))),
+                  
                 );
               },
             );

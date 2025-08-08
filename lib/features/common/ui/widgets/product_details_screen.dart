@@ -131,6 +131,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('Price',style: Theme.of(context).textTheme.bodyLarge,),
             Text('${Constants.takeSign}100',style:TextStyle(

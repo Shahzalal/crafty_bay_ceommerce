@@ -17,7 +17,7 @@ class _IncDecButtonState extends State<IncDecButton> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        _buildIconButton(
+        _buildIconRemoveButton(
           onTap: (){
             if(value<=1)return;
             value--;
@@ -32,7 +32,7 @@ class _IncDecButtonState extends State<IncDecButton> {
           padding: const EdgeInsets.symmetric(horizontal: 4.0),
           child: Text('$value',style: TextStyle(fontWeight: FontWeight.w400,fontSize: 18),),
         ),
-        _buildIconButton(
+        _buildIconAddButton(
           onTap: (){
             if(value>=20)return;
             value++;
@@ -48,7 +48,7 @@ class _IncDecButtonState extends State<IncDecButton> {
   }
 
 
-  Widget _buildIconButton({
+  Widget _buildIconRemoveButton({
     required VoidCallback onTap,
     required IconData icon,
 }){
@@ -57,8 +57,26 @@ class _IncDecButtonState extends State<IncDecButton> {
       child: Container(
         padding: EdgeInsets.all(4),
         decoration: BoxDecoration(
-          color: AppColors.themeColor,
+          color: value>1?AppColors.themeColor:AppColors.themeColor.withOpacity(0.4),
           borderRadius: BorderRadius.circular(4)
+        ),
+        child: Icon(icon,size: 18,color: Colors.white,),
+      ),
+
+    );
+  }
+
+  Widget _buildIconAddButton({
+    required VoidCallback onTap,
+    required IconData icon,
+  }){
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.all(4),
+        decoration: BoxDecoration(
+            color: value<20?AppColors.themeColor:AppColors.themeColor.withOpacity(0.4),
+            borderRadius: BorderRadius.circular(4)
         ),
         child: Icon(icon,size: 18,color: Colors.white,),
       ),

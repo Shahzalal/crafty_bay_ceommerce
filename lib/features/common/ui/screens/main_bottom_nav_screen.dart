@@ -5,6 +5,8 @@ import 'package:crafty_bay_ecommerce/features/wish_list/ui/screens/wish_list_scr
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../cart/ui/screens/cart_screen.dart';
+
 class MainBottomNavScreen extends StatefulWidget {
   const MainBottomNavScreen({super.key});
 
@@ -19,7 +21,7 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
   final List<Widget> screens=[
     HomeScreen(),
     ProductCategoryScreen(),
-    ProductCategoryScreen(),
+    CartScreen(),
     WishListScreen(),
 
   ];
