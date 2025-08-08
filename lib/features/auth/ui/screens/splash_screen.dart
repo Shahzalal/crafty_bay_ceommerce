@@ -1,4 +1,4 @@
-import 'package:crafty_bay_ecommerce/features/auth/ui/screens/home_screen.dart';
+import 'package:crafty_bay_ecommerce/features/auth/ui/screens/main_bottom_nav_screen.dart';
 import 'package:crafty_bay_ecommerce/features/auth/ui/widgets/app_logo.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> _moveToHomeScreen() async {
     await Future.delayed(Duration(seconds: 2));
-    Navigator.pushReplacementNamed(context, HomeScreen.name);
+    Navigator.pushReplacementNamed(context, MainBottomNavScreen.name);
   }
 
   @override
@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
               AppLogo(),
               Spacer(),
               CircularProgressIndicator(),
-              const SizedBox(height: 10),
+              const SizedBox(height: 12),
               Text('Version', style: TextStyle(letterSpacing: .4)),
             ],
           ),

@@ -1,16 +1,16 @@
 import 'package:crafty_bay_ecommerce/app/asset_path.dart';
-import 'package:crafty_bay_ecommerce/features/auth/ui/screens/product_category_screen.dart';
 import 'package:crafty_bay_ecommerce/features/auth/ui/widgets/app_bar_icon_button.dart';
 import 'package:crafty_bay_ecommerce/features/auth/ui/widgets/home_carousel_slider.dart';
 import 'package:crafty_bay_ecommerce/features/auth/ui/widgets/product_category_item.dart';
 import 'package:crafty_bay_ecommerce/features/auth/ui/widgets/product_search_bar.dart';
+import 'package:crafty_bay_ecommerce/features/common/ui/controller/main_bottom_nav_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
-  static final String name = '/home';
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 16),
 
                 _buildSectionHeader(title: 'Categories', onTapApp: () {
-                  Navigator.pushNamed(context, ProductCategoryScreen.name);
+                  Get.find<MainBottomNavController>().moveToCategory();
                 }),
                 _getCategoryList(),
                 _buildSectionHeader(title: 'Popular', onTapApp: () {}),
