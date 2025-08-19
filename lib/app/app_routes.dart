@@ -6,6 +6,8 @@ import 'package:crafty_bay_ecommerce/features/common/ui/widgets/product_details_
 import 'package:crafty_bay_ecommerce/features/products/ui/screens/product_list_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../features/auth/ui/screens/verify_otp_screen.dart';
+
 class AppRoutes {
   static Route<dynamic> routes(RouteSettings settings) {
     late final Widget screenWidget;
@@ -24,6 +26,9 @@ class AppRoutes {
     }else if(settings.name==ProductDetailsScreen.name){
       final String productId = settings.arguments as String;
       screenWidget=ProductDetailsScreen(productId: productId);
+    }else if(settings.name==VerifyOtpScreen.name){
+      final String email =settings.arguments as String;
+screenWidget=VerifyOtpScreen(email: email,);
     }
     return MaterialPageRoute(builder: (context) => screenWidget);
   }
