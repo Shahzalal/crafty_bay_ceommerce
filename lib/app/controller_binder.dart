@@ -3,6 +3,8 @@ import 'package:crafty_bay_ecommerce/features/auth/ui/controller/sign_up_control
 import 'package:crafty_bay_ecommerce/features/common/ui/controller/main_bottom_nav_controller.dart';
 import 'package:get/get.dart';
 
+import '../features/auth/ui/controller/verity_otp_controller.dart';
+
 class ControllerBinder extends Bindings {
   @override
   void dependencies() {
@@ -14,6 +16,7 @@ class ControllerBinder extends Bindings {
       ),
     );
     Get.put(SignUpController());
+    Get.put(VerityOtpController());
   }
 
   void _onUnAuthorize() {}

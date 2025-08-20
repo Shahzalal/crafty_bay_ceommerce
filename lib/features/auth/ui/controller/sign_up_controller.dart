@@ -24,7 +24,10 @@ class SignUpController extends GetxController{
     if (response.isSuccess){
       _message = response.responseData!['msg'];
     isSuccess = true;
-    _errorMessage = response.errorMessage!;
+    _errorMessage=null;
+
+    }else{
+      _errorMessage = response.errorMessage!;
     }
     _inProgress = false;
     update();
