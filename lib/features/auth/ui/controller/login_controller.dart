@@ -1,26 +1,26 @@
-import 'package:crafty_bay_ecommerce/app/urls.dart';
-import 'package:crafty_bay_ecommerce/core/services/network/network_client.dart';
-import 'package:crafty_bay_ecommerce/features/common/models/user_model.dart';
 import 'package:get/get.dart';
 
+import '../../../../app/urls.dart';
+import '../../../../core/services/network/network_client.dart';
 import '../../../common/controller/auth_controller.dart';
-import '../../data/model/verify_otp_request_model.dart';
+import '../../../common/models/user_model.dart';
+import '../../data/model/login_request_model.dart';
 
-class VerityOtpController extends GetxController {
+class LoginController extends GetxController {
   bool _inProgress = false;
+
   String? _errorMessage;
 
   bool get inProgress => _inProgress;
 
   String? get errorMessage => _errorMessage;
 
-  Future<bool> verifyOtp(VerifyOtpRequestModel model) async {
+  Future<bool> login(LoginRequestModel model) async {
     bool isSuccess = false;
     _inProgress = true;
     update();
-
     final NetworkResponse response = await Get.find<NetworkClient>()
-        .postRequest(Urls.verifyOtpUrl, body: model.toJson());
+        .postRequest(Urls.loginUrl, body: model.toJson());
     if (response.isSuccess) {
       await Get.find<AuthController>().saveUserData(
         response.responseData!['data']['token'],
@@ -34,6 +34,7 @@ class VerityOtpController extends GetxController {
 
     _inProgress = false;
     update();
+
     return isSuccess;
   }
 }

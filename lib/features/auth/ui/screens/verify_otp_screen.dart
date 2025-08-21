@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
+import '../../../common/ui/screens/main_bottom_nav_screen.dart';
 import '../widgets/app_logo.dart';
 
 
@@ -98,7 +99,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
      VerifyOtpRequestModel model = VerifyOtpRequestModel(email: widget.email, otp: _otpTEController.text);
      final bool isSuccess = await Get.find<VerityOtpController>().verifyOtp(model);
      if(isSuccess){
-
+                Navigator.pushNamedAndRemoveUntil(context, MainBottomNavScreen.name, (predicate) => false);
      }else{
        showSnackBarMessage(context, Get.find<VerityOtpController>().errorMessage!,true);
      }
