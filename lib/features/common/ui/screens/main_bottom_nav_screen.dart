@@ -1,4 +1,4 @@
-import 'package:crafty_bay_ecommerce/features/common/ui/screens/home_screen.dart';
+import 'package:crafty_bay_ecommerce/features/home/ui/screens/home_screen.dart';
 import 'package:crafty_bay_ecommerce/features/products/ui/screens/product_category_screen.dart';
 import 'package:crafty_bay_ecommerce/features/common/ui/controller/main_bottom_nav_controller.dart';
 import 'package:crafty_bay_ecommerce/features/wish_list/ui/screens/wish_list_screen.dart';
@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../cart/ui/screens/cart_screen.dart';
+import '../../../home/ui/controllers/home_slider_controller.dart';
 
 class MainBottomNavScreen extends StatefulWidget {
   const MainBottomNavScreen({super.key});
@@ -25,6 +26,13 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
     WishListScreen(),
 
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    Get.find<HomeSliderController>().getHomeSliders();
+  }
+
 
 
   @override

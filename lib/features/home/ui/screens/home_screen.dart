@@ -1,13 +1,16 @@
 import 'package:crafty_bay_ecommerce/app/asset_path.dart';
 import 'package:crafty_bay_ecommerce/features/auth/ui/widgets/app_bar_icon_button.dart';
-import 'package:crafty_bay_ecommerce/features/common/ui/widgets/home_carousel_slider.dart';
+import 'package:crafty_bay_ecommerce/features/home/ui/widgets/home_carousel_slider.dart';
 import 'package:crafty_bay_ecommerce/features/common/ui/widgets/product_category_item.dart';
+import 'package:crafty_bay_ecommerce/features/home/ui/controllers/home_slider_controller.dart';
 import 'package:crafty_bay_ecommerce/features/products/ui/widgets/product_search_bar.dart';
 import 'package:crafty_bay_ecommerce/features/common/ui/controller/main_bottom_nav_controller.dart';
 import 'package:crafty_bay_ecommerce/features/common/ui/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
+import '../../../../core/ui/widgets/centered_circular_progress_indicator.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -30,7 +33,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 16),
                 ProductSearchBar(),
                 const SizedBox(height: 16),
-                HomeCarouselSlider(),
+                GetBuilder<HomeSliderController>(
+                  builder: (sliderController) {
+                    if (sliderController.inProgress) {
+                      return SizedBox(
+                        height: 192,
+                        child: CenteredCircularProgressIndicator(),
+                      );
+                    }
+
+                    return HomeCarouselSlider(
+                      sliders: sliderController.sliderModelList,
+                    );
+                  },
+                ),
+
                 const SizedBox(height: 16),
 
                 _buildSectionHeader(
