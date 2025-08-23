@@ -27,6 +27,9 @@ class CategoryListController extends GetxController {
 
   List<CategoryModel> get categoryModelList => _categoryModelList;
 
+  int get homeCategoryListLength =>
+      _categoryModelList.length > 10 ? 10 : _categoryModelList.length;
+
   Future<void> getCategoryList() async {
     _currentPage++;
 
@@ -49,7 +52,7 @@ class CategoryListController extends GetxController {
       _lastPage = response.responseData!['data']['last_page'] ?? 0;
       List<CategoryModel> list = [];
       for (Map<String, dynamic> slider
-      in response.responseData!['data']['results']) {
+          in response.responseData!['data']['results']) {
         list.add(CategoryModel.fromJson(slider));
       }
       _categoryModelList.addAll(list);

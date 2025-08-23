@@ -1,5 +1,6 @@
 import 'package:crafty_bay_ecommerce/app/asset_path.dart';
 import 'package:crafty_bay_ecommerce/features/auth/ui/widgets/app_bar_icon_button.dart';
+import 'package:crafty_bay_ecommerce/features/common/controller/category_list_controller.dart';
 import 'package:crafty_bay_ecommerce/features/home/ui/widgets/home_carousel_slider.dart';
 import 'package:crafty_bay_ecommerce/features/common/ui/widgets/product_category_item.dart';
 import 'package:crafty_bay_ecommerce/features/home/ui/controllers/home_slider_controller.dart';
@@ -102,13 +103,22 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _getCategoryList() {
     return SizedBox(
       height: 100,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return ProductCategoryItem();
+      child: GetBuilder<CategoryListController>(
+        builder: (controller) {
+          if (controller.initialLoadingInProgress) {
+            return CenteredCircularProgressIndicator();
+          }
+          return ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemCount: 10,
+            itemBuilder: (context, index) {
+              return ProductCategoryItem(
+                categoryModel: controller.categoryModelList[index],
+              );
+            },
+            separatorBuilder: (context, index) => const SizedBox(width: 8),
+          );
         },
-        separatorBuilder: (context, index) => const SizedBox(width: 8),
       ),
     );
   }
