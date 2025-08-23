@@ -8,6 +8,7 @@ import 'package:crafty_bay_ecommerce/features/home/ui/controllers/home_slider_co
 import 'package:get/get.dart';
 
 import '../features/auth/ui/controller/verity_otp_controller.dart';
+import '../features/common/controller/category_list_controller.dart';
 
 class ControllerBinder extends Bindings {
   final AuthController _authController = AuthController();
@@ -25,6 +26,7 @@ class ControllerBinder extends Bindings {
     Get.put(VerityOtpController());
     Get.put(LoginController());
     Get.put(HomeSliderController());
+    Get.put(CategoryListController());
   }
 
   Future<void> _onUnAuthorize() async {
