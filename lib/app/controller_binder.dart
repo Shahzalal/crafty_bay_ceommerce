@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import '../features/auth/ui/controller/verity_otp_controller.dart';
 import '../features/common/controller/category_list_controller.dart';
 
+
 class ControllerBinder extends Bindings {
   final AuthController _authController = AuthController();
   @override

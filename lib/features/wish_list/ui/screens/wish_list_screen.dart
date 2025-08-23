@@ -2,7 +2,7 @@ import 'package:crafty_bay_ecommerce/features/common/ui/controller/main_bottom_n
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../common/ui/widgets/product_card.dart';
+
 
 class WishListScreen extends StatelessWidget {
   const WishListScreen({super.key});
@@ -33,7 +33,7 @@ class WishListScreen extends StatelessWidget {
               mainAxisSpacing: 16,
             ),
             itemBuilder: (context, index) {
-              return FittedBox(child: ProductCard());
+              // return FittedBox(child: ProductCard());
             },
           ),
         ),

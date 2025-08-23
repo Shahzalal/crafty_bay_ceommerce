@@ -1,11 +1,14 @@
 import 'package:crafty_bay_ecommerce/app/app_colors.dart';
-import 'package:crafty_bay_ecommerce/app/asset_path.dart';
 import 'package:crafty_bay_ecommerce/app/constants.dart';
 import 'package:crafty_bay_ecommerce/features/common/ui/widgets/product_details_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../../models/product_model.dart';
+
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key});
+  const ProductCard({super.key, required this.productModel});
+
+  final ProductModel productModel;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +17,7 @@ class ProductCard extends StatelessWidget {
         Navigator.pushNamed(
           context,
           ProductDetailsScreen.name,
-          arguments: '123',
+          arguments: productModel.id,
         );
       },
       child: Container(
@@ -43,14 +46,14 @@ class ProductCard extends StatelessWidget {
                 ),
               ),
               padding: EdgeInsets.all(16),
-              child: Image.asset(AssetPath.dummyNikeShoe, height: 80),
+              child: Image.network(productModel.photoUrls.first,height: 80,),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
                   Text(
-                    'Nike ER345T- New model of 2025',
+                    productModel.title,
                     maxLines: 1,
                     style: TextStyle(
                       overflow: TextOverflow.ellipsis,
@@ -62,7 +65,7 @@ class ProductCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '${Constants.takeSign}100',
+                        '${Constants.takeSign}${productModel.currentPrice}',
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,

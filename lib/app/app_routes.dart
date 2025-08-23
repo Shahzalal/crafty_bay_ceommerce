@@ -7,6 +7,7 @@ import 'package:crafty_bay_ecommerce/features/products/ui/screens/product_list_s
 import 'package:flutter/material.dart';
 
 import '../features/auth/ui/screens/verify_otp_screen.dart';
+import '../features/common/models/category_list_model.dart';
 
 class AppRoutes {
   static Route<dynamic> routes(RouteSettings settings) {
@@ -21,7 +22,7 @@ class AppRoutes {
     } else if (settings.name == MainBottomNavScreen.name) {
       screenWidget = MainBottomNavScreen();
     } else if (settings.name == ProductListScreen.name) {
-      final String category = settings.arguments as String;
+      final CategoryModel category = settings.arguments as CategoryModel;
       screenWidget = ProductListScreen(category: category);
     }else if(settings.name==ProductDetailsScreen.name){
       final String productId = settings.arguments as String;
