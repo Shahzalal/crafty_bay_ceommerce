@@ -5,6 +5,7 @@ import 'package:crafty_bay_ecommerce/features/auth/ui/screens/login_screen.dart'
 import 'package:crafty_bay_ecommerce/features/common/controller/auth_controller.dart';
 import 'package:crafty_bay_ecommerce/features/common/ui/controller/main_bottom_nav_controller.dart';
 import 'package:crafty_bay_ecommerce/features/home/ui/controllers/home_slider_controller.dart';
+import 'package:crafty_bay_ecommerce/features/home/ui/controllers/popular_product_list_controller.dart';
 import 'package:get/get.dart';
 
 import '../features/auth/ui/controller/verity_otp_controller.dart';
@@ -28,6 +29,7 @@ class ControllerBinder extends Bindings {
     Get.put(LoginController());
     Get.put(HomeSliderController());
     Get.put(CategoryListController());
+    Get.put(PopularProductController());
   }
 
   Future<void> _onUnAuthorize() async {

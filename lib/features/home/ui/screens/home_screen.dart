@@ -12,6 +12,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/ui/widgets/centered_circular_progress_indicator.dart';
+import '../controllers/popular_product_list_controller.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -124,12 +125,26 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _getPopularProducts() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        spacing: 8,
-        // children: [1, 2, 3, 4].map((e) => ProductCard()).toList(),
-      ),
+    return GetBuilder<PopularProductController>(
+      builder: (popularController) {
+        return Visibility(
+          visible: popularController.inProgress == false,
+          replacement: CenteredCircularProgressIndicator(),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: popularController.productModelList
+                  .map(
+                    (product) => Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: ProductCard(productModel: product),
+                    ),
+                  )
+                  .toList(),
+            ),
+          ),
+        );
+      },
     );
   }
 

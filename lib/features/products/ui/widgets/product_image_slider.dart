@@ -4,7 +4,9 @@ import 'package:crafty_bay_ecommerce/app/asset_path.dart';
 import 'package:flutter/material.dart';
 
 class ProductImageSlider extends StatefulWidget {
-  const ProductImageSlider({super.key});
+  const ProductImageSlider({super.key, required this.image});
+
+  final List<String> image;
 
   @override
   State<ProductImageSlider> createState() => _ProductImageSliderState();
@@ -25,13 +27,13 @@ class _ProductImageSliderState extends State<ProductImageSlider> {
               _currentSlider.value = currentIndex;
             },
           ),
-          items: [1, 2, 3, 4, 5].map((i) {
+          items: widget.image.map((image) {
             return Builder(
               builder: (BuildContext context) {
                 return Container(
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                      image: DecorationImage(image: AssetImage(AssetPath.dummyNikeShoe))),
+                      image: DecorationImage(image: NetworkImage(image))),
                   
                 );
               },
@@ -48,7 +50,7 @@ class _ProductImageSliderState extends State<ProductImageSlider> {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  for (var i = 0; i < 5; i++)
+                  for (var i = 0; i < widget.image.length; i++)
                     Container(
                       height: 12,
                       width: 12,
