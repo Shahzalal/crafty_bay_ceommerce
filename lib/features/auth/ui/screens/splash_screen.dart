@@ -1,6 +1,8 @@
 import 'package:crafty_bay_ecommerce/features/auth/ui/widgets/app_logo.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../common/controller/auth_controller.dart';
 import '../../../common/ui/screens/main_bottom_nav_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -21,11 +23,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> _moveToHomeScreen() async {
     await Future.delayed(Duration(seconds: 2));
+    await Get.find<AuthController>().getUserData();
     Navigator.pushReplacementNamed(context, MainBottomNavScreen.name);
-    // Navigator.pushReplacementNamed(context, SignUpScreen.name);
-    // Navigator.pushReplacementNamed(context, LoginScreen.name);
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

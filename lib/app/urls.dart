@@ -15,8 +15,12 @@ class Urls {
     String categoryId,
   ) => '$_baseUrl/products?count=$count&page=$currentPage&category=$categoryId';
 
+  static const String addToCartUrl = '$_baseUrl/cart';
+  static const String getCartItemListUrl = '$_baseUrl/cart';
+
   static String productsByTagUrl(String tag) => '$_baseUrl/products?tag=$tag';
 
   static String productDetailsUrl(String productId) =>
       '$_baseUrl/products/id/$productId';
+
 }

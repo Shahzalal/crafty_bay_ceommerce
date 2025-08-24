@@ -153,12 +153,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     );
                   },
                 ),
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Already have an account?'),
+                    TextButton(onPressed: _onTapToLogin, child: Text('Login')),
+                  ],
+                ),
+                const SizedBox(height: 32),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  void _onTapToLogin() {
+    Navigator.pop(context);
   }
 
   Future<void> _onTapSignUp() async {

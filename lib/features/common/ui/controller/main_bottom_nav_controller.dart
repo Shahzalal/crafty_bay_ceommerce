@@ -9,6 +9,7 @@ class MainBottomNavController extends GetxController {
     if (index == _currentIndex) {
       return;
     }
+
     _currentIndex = index;
     update();
   }

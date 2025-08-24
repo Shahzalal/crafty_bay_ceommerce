@@ -6,9 +6,11 @@ import 'package:crafty_bay_ecommerce/features/common/controller/auth_controller.
 import 'package:crafty_bay_ecommerce/features/common/ui/controller/main_bottom_nav_controller.dart';
 import 'package:crafty_bay_ecommerce/features/home/ui/controllers/home_slider_controller.dart';
 import 'package:crafty_bay_ecommerce/features/home/ui/controllers/popular_product_list_controller.dart';
+import 'package:crafty_bay_ecommerce/features/products/controllers/add_to_cart_controller.dart';
 import 'package:get/get.dart';
 
 import '../features/auth/ui/controller/verity_otp_controller.dart';
+import '../features/cart/ui/controllers/cart_list_controller.dart';
 import '../features/common/controller/category_list_controller.dart';
 
 
@@ -21,7 +23,9 @@ class ControllerBinder extends Bindings {
     Get.put(
       NetworkClient(
         onUnAuthorize: _onUnAuthorize,
-        commonHeaders: _commonHeaders,
+        commonHeaders: (){
+          return _commonHeaders();
+        },
       ),
     );
     Get.put(SignUpController());
@@ -30,13 +34,15 @@ class ControllerBinder extends Bindings {
     Get.put(HomeSliderController());
     Get.put(CategoryListController());
     Get.put(PopularProductController());
+    Get.put(AddToCartController());
+    Get.put(CartListController());
   }
 
   Future<void> _onUnAuthorize() async {
     await _authController.clearUserData();
     Get.to(()=>LoginScreen());
   }
-  Map<String, String>get  _commonHeaders {
+  Map<String, String> _commonHeaders (){
     return{
     'content-type': 'application/json',
       'token':_authController.accessToken ?? '',

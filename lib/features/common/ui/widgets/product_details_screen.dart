@@ -1,6 +1,10 @@
 import 'package:crafty_bay_ecommerce/app/app_colors.dart';
 import 'package:crafty_bay_ecommerce/app/constants.dart';
 import 'package:crafty_bay_ecommerce/core/ui/widgets/centered_circular_progress_indicator.dart';
+import 'package:crafty_bay_ecommerce/core/ui/widgets/snack_bar_message.dart';
+import 'package:crafty_bay_ecommerce/features/auth/ui/screens/login_screen.dart';
+import 'package:crafty_bay_ecommerce/features/common/controller/auth_controller.dart';
+import 'package:crafty_bay_ecommerce/features/products/controllers/add_to_cart_controller.dart';
 import 'package:crafty_bay_ecommerce/features/products/ui/widgets/color_picker.dart';
 import 'package:crafty_bay_ecommerce/features/products/ui/widgets/inc_dec_button.dart';
 import 'package:crafty_bay_ecommerce/features/products/ui/widgets/product_image_slider.dart';
@@ -24,7 +28,9 @@ class ProductDetailsScreen extends StatefulWidget {
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   final ProductDetailsController _productDetailsController =
-      ProductDetailsController();
+  ProductDetailsController();
+  final AddToCartController _addToCartController =
+  Get.find<AddToCartController>();
 
   @override
   void initState() {
@@ -195,7 +201,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Price', style: Theme.of(context).textTheme.bodyLarge),
+              Text('Price', style: Theme
+                  .of(context)
+                  .textTheme
+                  .bodyLarge),
               Text(
                 '${Constants.takeSign}${product.currentPrice}',
                 style: TextStyle(
@@ -208,10 +217,37 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           ),
           SizedBox(
             width: 120,
-            child: ElevatedButton(onPressed: () {}, child: Text('Add to cart')),
+            child: GetBuilder(
+              init: _addToCartController,
+              builder: (_) {
+                return Visibility(
+                  visible: _addToCartController.inProgress == false,
+                  replacement: CenteredCircularProgressIndicator(),
+
+                  child: ElevatedButton(
+                    onPressed: _onTapAddToCartButton,
+                    child: Text('Add to cart'),
+                  ),
+                );
+              },
+            ),
           ),
         ],
       ),
     );
+  }
+
+  Future<void> _onTapAddToCartButton() async {
+    if (await Get.find<AuthController>().isUserLoggedIn()) {
+      final bool result = await _addToCartController.addToCart(
+          widget.productId);
+      if (result) {
+        showSnackBarMessage(context, 'Added to cart');
+      } else {
+        showSnackBarMessage(context, _addToCartController.errorMessage!);
+      }
+    } else {
+      Navigator.pushNamed(context, LoginScreen.name);
+    }
   }
 }

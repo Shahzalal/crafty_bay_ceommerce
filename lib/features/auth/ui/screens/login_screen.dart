@@ -1,4 +1,5 @@
 import 'package:crafty_bay_ecommerce/core/ui/widgets/centered_circular_progress_indicator.dart';
+import 'package:crafty_bay_ecommerce/features/auth/ui/screens/sign_up_screen.dart';
 import 'package:crafty_bay_ecommerce/features/auth/ui/widgets/app_logo.dart';
 import 'package:crafty_bay_ecommerce/features/common/ui/screens/main_bottom_nav_screen.dart';
 import 'package:email_validator/email_validator.dart';
@@ -89,6 +90,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       );
                     },
                   ),
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Don't have an account?"),
+                      TextButton(
+                        onPressed: _onTapToSignUpButton,
+                        child: Text('Sign Up'),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -119,6 +131,10 @@ class _LoginScreenState extends State<LoginScreen> {
         );
       }
     }
+  }
+
+  void _onTapToSignUpButton() {
+    Navigator.pushNamed(context, SignUpScreen.name);
   }
 
   @override
